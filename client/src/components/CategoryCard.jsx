@@ -1,7 +1,7 @@
 function CategoryCard({ category }) {
   return (
     <a
-      className={`group relative flex min-h-76 flex-col justify-between overflow-hidden rounded-2xl bg-gradient-to-br p-6 text-white ${category.colors}`}
+      className={`group relative flex min-h-64 flex-col justify-between overflow-hidden rounded-2xl bg-gradient-to-br p-5 text-white sm:min-h-76 sm:p-6 ${category.colors}`}
       href="#products"
     >
       <div

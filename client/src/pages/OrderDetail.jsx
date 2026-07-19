@@ -35,7 +35,7 @@ function OrderDetail() {
   }
 
   return (
-    <main className="mx-auto w-[min(700px,calc(100%-40px))] py-12">
+    <main className="mx-auto w-[min(700px,calc(100%-24px))] py-12 sm:w-[min(700px,calc(100%-40px))]">
       {order.paymentStatus === 'paid' && (
         <div className="mb-6 rounded-2xl bg-[#6F9E23]/10 p-5 text-sm text-[#6F9E23]">
           Payment confirmed — thanks for your order!
@@ -43,7 +43,7 @@ function OrderDetail() {
       )}
 
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-semibold tracking-[-.03em]">Order {order._id}</h1>
+        <h1 className="text-xl font-semibold tracking-[-.03em] sm:text-2xl">Order {order._id}</h1>
         <span className="rounded-full bg-[#eeeee9] px-3 py-1 font-mono text-[10px] uppercase tracking-widest">
           {order.orderStatus}
         </span>
@@ -57,22 +57,22 @@ function OrderDetail() {
               <span>
                 {item.title} × {item.quantity}
               </span>
-              <span className="font-semibold">${item.price * item.quantity}</span>
+              <span className="font-semibold">₹{item.price * item.quantity}</span>
             </li>
           ))}
         </ul>
         <div className="mt-4 space-y-1 border-t border-[#deded8] pt-4 text-sm">
           <div className="flex justify-between">
             <span className="text-[#6b6b63]">Subtotal</span>
-            <span>${order.subtotal}</span>
+            <span>₹{order.subtotal}</span>
           </div>
           <div className="flex justify-between">
             <span className="text-[#6b6b63]">Shipping</span>
-            <span>{order.shipping === 0 ? 'Free' : `$${order.shipping}`}</span>
+            <span>{order.shipping === 0 ? 'Free' : `₹${order.shipping}`}</span>
           </div>
           <div className="flex justify-between text-base font-semibold">
             <span>Total</span>
-            <span>${order.total}</span>
+            <span>₹{order.total}</span>
           </div>
         </div>
       </div>

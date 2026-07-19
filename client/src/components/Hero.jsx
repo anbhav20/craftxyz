@@ -20,7 +20,7 @@ function Hero() {
 
   return (
     <section id="top" className="bg-[#F2F0E9]">
-      <div className="relative mx-auto flex min-h-[760px] max-w-[1440px] overflow-hidden bg-gradient-to-br from-white via-[#F8F7F2] to-[#ECE9DF] shadow-[0_30px_80px_rgba(0,0,0,.08)]">
+      <div className="relative mx-auto flex min-h-[580px] max-w-[1440px] overflow-hidden bg-gradient-to-br from-white via-[#F8F7F2] to-[#ECE9DF] shadow-[0_30px_80px_rgba(0,0,0,.08)] sm:min-h-[760px]">
 
         {/* Layer-line texture — signature detail */}
         <div
@@ -40,7 +40,7 @@ function Hero() {
         <div className="absolute inset-0 bg-white/10 backdrop-[1px]" />
 
         <div className="relative z-10 flex w-full items-center">
-          <div className="mx-auto flex w-full max-w-[1250px] px-8 md:px-16">
+          <div className="mx-auto flex w-full max-w-[1250px] px-5 sm:px-8 md:px-16">
             <motion.div variants={container} initial="hidden" animate="show" className="max-w-xl">
               <motion.div
                 variants={layer}
@@ -61,21 +61,21 @@ function Hero() {
                 <span className="text-[#6F9E23]">Modern Living.</span>
               </motion.h1>
 
-              <motion.p variants={layer} className="mt-8 max-w-lg text-lg leading-8 text-[#141311]/60">
+              <motion.p variants={layer} className="mt-6 max-w-lg text-base leading-7 text-[#141311]/60 sm:mt-8 sm:text-lg sm:leading-8">
                 Beautifully designed 3D printed creations, built layer by layer
                 with precision, creativity and premium materials.
               </motion.p>
 
-              <motion.div variants={layer} className="mt-10 flex flex-wrap gap-4">
+              <motion.div variants={layer} className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap">
                 <a
                   href="#products"
-                  className="rounded-full bg-[#141311] px-8 py-4 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#6F9E23]"
+                  className="rounded-full bg-[#141311] px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#6F9E23] sm:px-8 sm:py-4"
                 >
                   Shop Collection
                 </a>
                 <a
                   href="#categories"
-                  className="rounded-full border border-[#141311]/15 bg-white/90 px-8 py-4 text-sm font-semibold text-[#141311] transition-all duration-300 hover:border-[#141311]"
+                  className="rounded-full border border-[#141311]/15 bg-white/90 px-6 py-3.5 text-sm font-semibold text-[#141311] transition-all duration-300 hover:border-[#141311] sm:px-8 sm:py-4"
                 >
                   Explore Designs
                 </a>

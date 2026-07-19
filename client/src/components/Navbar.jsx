@@ -22,8 +22,8 @@ function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-[#141311]/10 bg-[#F2F0E9]/95 backdrop-blur">
-      <div className="mx-auto flex h-17 w-[min(1320px,calc(100%-40px))] items-center gap-7">
-        <Link className="font-['Space_Grotesk'] text-xl font-bold tracking-[-.06em] text-[#141311]" to="/">
+      <div className="mx-auto flex h-17 w-[min(1320px,calc(100%-24px))] items-center gap-3 sm:gap-7 sm:w-[min(1320px,calc(100%-40px))]">
+        <Link className="shrink-0 font-['Space_Grotesk'] text-lg font-bold tracking-[-.06em] text-[#141311] sm:text-xl" to="/">
           CRAFT<span className="text-[#6F9E23]">XYZ</span>
         </Link>
 
@@ -49,7 +49,7 @@ function Navbar() {
           </button>
 
           <button
-            className="relative flex items-center gap-2 rounded-full bg-[#141311] px-4 py-2 text-xs font-bold text-white transition-colors hover:bg-[#6F9E23] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#6F9E23]"
+            className="relative flex items-center gap-2 rounded-full bg-[#141311] px-3 py-2 text-[11px] font-bold text-white transition-colors hover:bg-[#6F9E23] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#6F9E23] sm:px-4 sm:text-xs"
             onClick={() => dispatch(openCartDrawer())}
             type="button"
           >
@@ -81,7 +81,7 @@ function Navbar() {
             className="overflow-hidden border-t border-[#141311]/10 bg-[#F2F0E9]"
           >
             <form
-              className="mx-auto flex w-[min(1320px,calc(100%-40px))] items-center gap-3 py-3"
+              className="mx-auto flex w-[min(1320px,calc(100%-24px))] items-center gap-3 py-3 sm:w-[min(1320px,calc(100%-40px))]"
               onSubmit={(event) => event.preventDefault()}
             >
               <input
@@ -111,7 +111,7 @@ function Navbar() {
             transition={{ duration: 0.25, ease: EASE }}
             className="overflow-hidden border-t border-[#141311]/10 bg-[#F2F0E9] text-sm font-semibold lg:hidden"
           >
-            <div className="mx-auto flex w-[min(1320px,calc(100%-40px))] flex-col gap-4 py-5">
+            <div className="mx-auto flex w-[min(1320px,calc(100%-24px))] flex-col gap-4 py-5 sm:w-[min(1320px,calc(100%-40px))]">
               <NavLink to="/" onClick={() => setMenuOpen(false)}>Home</NavLink>
               <NavLink to="/products" onClick={() => setMenuOpen(false)}>Shop</NavLink>
               <a href="/#categories" onClick={() => setMenuOpen(false)}>Collections</a>

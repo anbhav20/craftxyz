@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 
 function ProductCard({ product, isWishlisted, onAddToCart, onToggleWishlist }) {
   return (
-    <article className="group">
-      <div className="relative aspect-[.86] overflow-hidden rounded-2xl bg-[#e7e5da]">
+    <article className="group overflow-hidden rounded-2xl border border-[#141311]/10 bg-white shadow-[0_12px_30px_rgba(20,19,17,0.05)]">
+      <div className="relative aspect-[.86] overflow-hidden bg-[#e7e5da]">
         <img
-          className="size-full object-cover transition duration-700 group-hover:scale-105"
+          className="size-full object-cover transition duration-700"
           src={product.image}
           alt={product.title}
           loading="lazy"
@@ -27,31 +27,36 @@ function ProductCard({ product, isWishlisted, onAddToCart, onToggleWishlist }) {
         >
           {isWishlisted ? '♥' : '♡'}
         </button>
+      </div>
 
-        <div className="absolute inset-x-0 bottom-0 flex translate-y-full gap-2 p-3 transition duration-300 group-hover:translate-y-0">
+      <div className="p-4">
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#141311]/45">
+              {product.material}
+            </p>
+            <h3 className="mt-1 text-base font-semibold tracking-[-.025em] text-[#141311]">
+              {product.title}
+            </h3>
+          </div>
+          <p className="font-mono font-semibold text-[#141311]">₹{product.price}</p>
+        </div>
+
+        <div className="mt-4 flex gap-2">
           <button
-            className="flex-1 rounded-xl bg-white px-3 py-3 text-xs font-bold text-[#141311] transition-colors hover:bg-[#B4FF39]"
+            className="flex-1 rounded-xl bg-[#141311] px-3 py-3 text-xs font-bold text-white transition hover:bg-[#6F9E23] active:scale-[0.98]"
             onClick={onAddToCart}
             type="button"
           >
-            Add to bag
+            Add to cart
           </button>
-          <Link className="rounded-xl bg-[#141311] px-4 py-3 text-xs font-bold text-white" to={`/products/${product.id}`}>
+          <Link
+            className="rounded-xl border border-[#141311]/10 bg-[#f6f5ef] px-4 py-3 text-xs font-bold text-[#141311] transition hover:bg-[#ece9de] active:scale-[0.98]"
+            to={`/products/${product.id}`}
+          >
             View
           </Link>
         </div>
-      </div>
-
-      <div className="flex items-start justify-between gap-3 pt-4">
-        <div>
-          <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#141311]/45">
-            {product.material}
-          </p>
-          <h3 className="mt-1 text-base font-semibold tracking-[-.025em] text-[#141311]">
-            {product.title}
-          </h3>
-        </div>
-        <p className="font-mono font-semibold text-[#141311]">${product.price}</p>
       </div>
     </article>
   );

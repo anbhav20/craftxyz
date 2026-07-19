@@ -49,7 +49,7 @@ function AdminDashboard() {
               <span className="rounded-full bg-[#F2F0E9] px-3 py-1 font-mono text-[10px] uppercase tracking-widest">
                 {order.orderStatus}
               </span>
-              <p className="font-semibold">${order.total}</p>
+              <p className="font-semibold">₹{order.total}</p>
               <Link className="text-xs font-semibold text-[#6F9E23] hover:underline" to="/admin/orders">
                 View orders →
               </Link>

@@ -17,15 +17,15 @@ function AdminLayout() {
   const user = useAppSelector(selectCurrentUser);
 
   return (
-    <div className="flex min-h-screen bg-[#F2F0E9] text-[#141311]">
-      <aside className="flex w-60 shrink-0 flex-col border-r border-[#141311]/10 bg-[#141311] text-white">
-        <div className="px-6 py-6">
+    <div className="min-h-screen bg-[#F2F0E9] text-[#141311] lg:flex">
+      <aside className="flex w-full shrink-0 flex-col border-b border-[#141311]/10 bg-[#141311] text-white lg:w-72 lg:border-b-0 lg:border-r">
+        <div className="px-4 py-4 sm:px-6 sm:py-6">
           <p className="font-['Space_Grotesk'] text-lg font-bold tracking-[-.05em]">
             CRAFT<span className="text-[#6F9E23]">XYZ</span>
           </p>
           <p className="mt-1 font-mono text-[10px] uppercase tracking-widest text-white/40">Admin</p>
         </div>
-        <nav className="flex flex-1 flex-col gap-1 px-3">
+        <nav className="flex flex-1 flex-wrap gap-1 px-3 pb-3 lg:flex-col lg:pb-0">
           {NAV_ITEMS.map((item) => (
             <NavLink
               key={item.to}
@@ -52,7 +52,7 @@ function AdminLayout() {
           </button>
         </div>
       </aside>
-      <main className="flex-1 overflow-y-auto p-8">
+      <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
         <Outlet />
       </main>
     </div>

@@ -13,7 +13,7 @@ function Footer() {
         }}
       />
 
-      <div className="mx-auto grid w-[min(1320px,100%)] gap-12 sm:grid-cols-[1.3fr_1fr_1fr_1fr]">
+      <div className="mx-auto grid w-[min(1320px,100%)] gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr] lg:gap-12">
         {/* Brand */}
         <div>
           <p className="font-['Space_Grotesk'] text-2xl font-bold tracking-[-.06em]">
@@ -23,33 +23,7 @@ function Footer() {
             Playful, lasting objects printed one layer at a time in our
             independent studio.
           </p>
-          <div className="mt-6 flex gap-3">
-            <a
-              className="grid size-10 place-items-center rounded-full border border-white/15 text-white transition hover:border-[#B4FF39] hover:bg-[#B4FF39] hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B4FF39]"
-              href="https://www.instagram.com/mr__mrs_jatav/"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Follow CraftXYZ on Instagram"
-            >
-              <FiInstagram size={18} />
-            </a>
-            <a
-              className="grid size-10 place-items-center rounded-full border border-white/15 text-white transition hover:border-[#B4FF39] hover:bg-[#B4FF39] hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B4FF39]"
-              href="mailto:pankajkumar879517@gmail.com"
-              aria-label="Email CraftXYZ"
-            >
-              <FiMail size={18} />
-            </a>
-            <a
-              className="grid size-10 place-items-center rounded-full border border-white/15 text-white transition hover:border-[#25D366] hover:bg-[#25D366] hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366]"
-              href="https://wa.me/919219427841"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Chat on WhatsApp"
-            >
-              <FaWhatsapp size={18} />
-            </a>
-          </div>
+          
         </div>
 
         {/* Explore */}
@@ -79,38 +53,65 @@ function Footer() {
         {/* Contact */}
         <div>
           <p className="font-mono text-[10px] font-bold uppercase tracking-[.18em] text-[#B4FF39]">
-            Contact
+            Website Owner Socials
           </p>
-          <div className="mt-4 grid gap-3 text-sm text-white/65">
-            <a className="inline-flex items-center gap-2 transition-colors hover:text-white" href="mailto:pankajkumar879517@gmail.com">
-              <FiMail aria-hidden="true" size={24} />
-         
-            </a>
+          <div className="mt-2 flex gap-3">
             <a
-              className="inline-flex items-center gap-2 transition-colors hover:text-white"
+              className="grid size-10 place-items-center rounded-full border border-white/15 text-white transition hover:border-[#B4FF39] hover:bg-[#B4FF39] hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B4FF39]"
               href="https://www.instagram.com/mr__mrs_jatav/"
               target="_blank"
               rel="noreferrer"
+              aria-label="Follow CraftXYZ on Instagram"
             >
-              <FiInstagram aria-hidden="true" size={24} />
-              
+              <FiInstagram size={16} />
             </a>
             <a
-              className="inline-flex items-center gap-2 transition-colors hover:text-[#25D366]"
+              className="grid size-10 place-items-center rounded-full border border-white/15 text-white transition hover:border-[#B4FF39] hover:bg-[#B4FF39] hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B4FF39]"
+              href="mailto:pankajkumar879517@gmail.com"
+              aria-label="Email CraftXYZ"
+            >
+              <FiMail size={16} />
+            </a>
+            <a
+              className="grid size-10 place-items-center rounded-full border border-white/15 text-white transition hover:border-[#25D366] hover:bg-[#25D366] hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366]"
               href="https://wa.me/919219427841"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Chat on WhatsApp"
             >
-              <FaWhatsapp aria-hidden="true" size={24} />
-             
+              <FaWhatsapp size={16} />
             </a>
+          </div>
+
+          <div className="mt-3 rounded-2xl border border-white/10 bg-white/5 p-4">
+            <p className="font-mono text-[10px] font-bold uppercase tracking-[.18em] text-[#B4FF39]">
+              Developer Socials
+            </p>
+            <div className="mt-3 flex gap-3">
+              <a
+                className="grid size-10 place-items-center rounded-full border border-white/15 text-white transition hover:border-[#B4FF39] hover:bg-[#B4FF39] hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B4FF39]"
+                href="https://www.instagram.com/axl.sql/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Follow developer on Instagram"
+              >
+                <FiInstagram size={16} />
+              </a>
+              <a
+                className="grid size-10 place-items-center rounded-full border border-white/15 text-white transition hover:border-[#B4FF39] hover:bg-[#B4FF39] hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B4FF39]"
+                href="mailto:spidey.9449@gmail.com"
+                aria-label="Email developer"
+              >
+                <FiMail size={16} />
+              </a>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="mx-auto mt-14 flex w-[min(1320px,100%)] flex-col gap-2 border-t border-white/10 pt-5 text-[11px] text-white/35 sm:flex-row sm:justify-between">
-        <span>© 2026 CraftXYZ</span>
-        <span>Designed to stand out.</span>
+      <div className="mx-auto mt-14 flex w-[min(1320px,100%)] flex-col gap-2 border-t border-white/10 pt-5 text-[11px] text-white/35 sm:flex-row sm:items-center sm:justify-between">
+        <span>© 2026 CraftXYZ. All rights reserved.</span>
+        <span>Designed to stand out. Built with care for modern living.</span>
       </div>
     </footer>
   );

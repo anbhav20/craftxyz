@@ -44,7 +44,7 @@ function AdminOrders() {
               <tr key={order._id}>
                 <td className="px-4 py-3 font-mono text-xs text-[#141311]/60">{order._id}</td>
                 <td className="px-4 py-3">{order.user?.name || order.user?.email || '—'}</td>
-                <td className="px-4 py-3 font-semibold">${order.total}</td>
+                <td className="px-4 py-3 font-semibold">₹{order.total}</td>
                 <td className="px-4 py-3">
                   <span
                     className={`rounded-full px-2 py-1 font-mono text-[10px] uppercase ${

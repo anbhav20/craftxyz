@@ -41,7 +41,7 @@ function AdminCustomers() {
                 <td className="px-4 py-3 font-semibold">{customer.name}</td>
                 <td className="px-4 py-3 text-[#141311]/60">{customer.email}</td>
                 <td className="px-4 py-3">{customer.totalOrders}</td>
-                <td className="px-4 py-3">${customer.totalSpent}</td>
+                <td className="px-4 py-3">₹{customer.totalSpent}</td>
               </tr>
             ))}
           </tbody>

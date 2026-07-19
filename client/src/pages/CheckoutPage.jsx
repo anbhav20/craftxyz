@@ -116,7 +116,7 @@ function CheckoutPage() {
   }
 
   return (
-    <main className="mx-auto w-[min(900px,calc(100%-40px))] py-12">
+    <main className="mx-auto w-[min(900px,calc(100%-24px))] py-12 sm:w-[min(900px,calc(100%-40px))]">
       <h1 className="text-3xl font-semibold tracking-[-.04em]">Checkout</h1>
 
       <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_360px]">
@@ -172,7 +172,7 @@ function CheckoutPage() {
                 onChange={(e) => setNewAddress({ ...newAddress, phone: e.target.value })}
                 required
               />
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 <input
                   className="rounded-lg border border-[#deded8] px-3 py-2 text-sm focus:border-[#6F9E23] focus:outline-none"
                   placeholder="City"
@@ -222,22 +222,22 @@ function CheckoutPage() {
                 <span>
                   {item.title} × {item.quantity}
                 </span>
-                <span className="font-semibold">${item.lineTotal}</span>
+                <span className="font-semibold">₹{item.lineTotal}</span>
               </li>
             ))}
           </ul>
           <div className="mt-4 space-y-1 border-t border-[#deded8] pt-4 text-sm">
             <div className="flex justify-between">
               <span className="text-[#6b6b63]">Subtotal</span>
-              <span>${cart.subtotal}</span>
+              <span>₹{cart.subtotal}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-[#6b6b63]">Shipping</span>
-              <span>{cart.shipping === 0 ? 'Free' : `$${cart.shipping}`}</span>
+              <span>{cart.shipping === 0 ? 'Free' : `₹${cart.shipping}`}</span>
             </div>
             <div className="flex justify-between text-base font-semibold">
               <span>Total</span>
-              <span>${cart.total}</span>
+              <span>₹{cart.total}</span>
             </div>
           </div>
           <button
@@ -246,7 +246,7 @@ function CheckoutPage() {
             type="button"
             disabled={paying || !selectedAddressId}
           >
-            {paying ? 'Opening payment…' : `Pay $${cart.total}`}
+            {paying ? 'Opening payment…' : `Pay ₹${cart.total}`}
           </button>
         </section>
       </div>

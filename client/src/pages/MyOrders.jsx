@@ -13,8 +13,8 @@ function MyOrders() {
   }, [dispatch]);
 
   return (
-    <main className="mx-auto w-[min(900px,calc(100%-40px))] py-12">
-      <h1 className="text-3xl font-semibold tracking-[-.04em]">My orders</h1>
+    <main className="mx-auto w-[min(900px,calc(100%-24px))] py-12 sm:w-[min(900px,calc(100%-40px))]">
+      <h1 className="text-2xl font-semibold tracking-[-.04em] sm:text-3xl">My orders</h1>
 
       {status === 'loading' && <p className="mt-8 text-sm text-[#6b6b63]">Loading…</p>}
       {status === 'succeeded' && orders.length === 0 && (
@@ -44,7 +44,7 @@ function MyOrders() {
               <span className="rounded-full bg-[#eeeee9] px-3 py-1 font-mono text-[10px] uppercase tracking-widest">
                 {order.orderStatus}
               </span>
-              <p className="font-semibold">${order.total}</p>
+              <p className="font-semibold">₹{order.total}</p>
             </div>
           </Link>
         ))}
