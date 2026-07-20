@@ -2,14 +2,22 @@ import { Link } from 'react-router-dom';
 
 function ProductCard({ product, isWishlisted, onAddToCart, onToggleWishlist }) {
   return (
-    <article className="group overflow-hidden rounded-2xl border border-[#141311]/10 bg-white shadow-[0_12px_30px_rgba(20,19,17,0.05)]">
-      <div className="relative aspect-[.86] overflow-hidden bg-[#e7e5da]">
-        <img
-          className="size-full object-cover transition duration-700"
-          src={product.image}
-          alt={product.title}
-          loading="lazy"
-        />
+    <article className="group">
+      <div className="relative aspect-[.86] overflow-hidden rounded-2xl bg-[#e7e5da]">
+        {product.image ? (
+          <img
+            className="size-full object-cover transition duration-700 group-hover:scale-105"
+            src={product.image}
+            alt={product.title}
+            loading="lazy"
+          />
+        ) : (
+          <div className="grid size-full place-items-center bg-[#ece9df] px-4 text-center">
+            <span className="font-mono text-[10px] font-semibold uppercase tracking-widest text-[#141311]/30">
+              No photo yet
+            </span>
+          </div>
+        )}
 
         {product.badge && (
           <span className="absolute left-3 top-3 rounded-full bg-[#B4FF39] px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-wider text-black">
@@ -27,9 +35,22 @@ function ProductCard({ product, isWishlisted, onAddToCart, onToggleWishlist }) {
         >
           {isWishlisted ? '♥' : '♡'}
         </button>
+
+        <div className="absolute inset-x-0 bottom-0 flex gap-2 p-3 transition duration-300 [@media(hover:hover)]:translate-y-full [@media(hover:hover)]:group-hover:translate-y-0">
+          <button
+            className="flex-1 rounded-xl bg-white px-3 py-3 text-xs font-bold text-[#141311] transition-colors hover:bg-[#B4FF39]"
+            onClick={onAddToCart}
+            type="button"
+          >
+            Add to bag
+          </button>
+          <Link className="rounded-xl bg-[#141311] px-4 py-3 text-xs font-bold text-white" to={`/products/${product.id}`}>
+            View
+          </Link>
+        </div>
       </div>
 
-      <div className="p-4">
+      <div className="pt-4">
         <div className="flex items-start justify-between gap-3">
           <div>
             <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#141311]/45">
@@ -39,24 +60,12 @@ function ProductCard({ product, isWishlisted, onAddToCart, onToggleWishlist }) {
               {product.title}
             </h3>
           </div>
-          <p className="font-mono font-semibold text-[#141311]">₹{product.price}</p>
+          <p className="whitespace-nowrap font-mono font-semibold text-[#141311]">₹{product.price}</p>
         </div>
 
-        <div className="mt-4 flex gap-2">
-          <button
-            className="flex-1 rounded-xl bg-[#141311] px-3 py-3 text-xs font-bold text-white transition hover:bg-[#6F9E23] active:scale-[0.98]"
-            onClick={onAddToCart}
-            type="button"
-          >
-            Add to cart
-          </button>
-          <Link
-            className="rounded-xl border border-[#141311]/10 bg-[#f6f5ef] px-4 py-3 text-xs font-bold text-[#141311] transition hover:bg-[#ece9de] active:scale-[0.98]"
-            to={`/products/${product.id}`}
-          >
-            View
-          </Link>
-        </div>
+        {product.description && (
+          <p className="mt-1.5 line-clamp-2 text-sm leading-5 text-[#141311]/55">{product.description}</p>
+        )}
       </div>
     </article>
   );

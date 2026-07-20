@@ -1,6 +1,8 @@
+import crypto from 'crypto';
 import { firebaseAuth } from '../config/firebase.js';
 import { User } from '../models/User.js';
 import { RefreshToken } from '../models/RefreshToken.js';
+import { PasswordResetToken } from '../models/PasswordResetToken.js';
 import { ApiError } from '../utils/ApiError.js';
 import { ApiResponse } from '../utils/ApiResponse.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
@@ -11,6 +13,7 @@ import {
   refreshCookieOptions,
 } from '../utils/tokens.js';
 import { issueTokens, revokeRefreshToken, revokeAllSessionsForUser } from '../services/authService.js';
+import { sendPasswordResetEmail } from '../services/mailerService.js';
 
 /**
  * POST /api/auth/google
@@ -138,4 +141,69 @@ export const me = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user.userId);
   if (!user) throw ApiError.notFound('User not found');
   new ApiResponse(200, { user }, 'Current user').send(res);
+});
+
+// Deliberately vague either way — never confirms or denies whether an
+// email has an account, so this endpoint can't be used to enumerate
+// admin email addresses.
+const FORGOT_PASSWORD_MESSAGE = 'If an account exists with that email, a reset link has been sent.';
+
+/**
+ * POST /api/auth/forgot-password
+ * Only ever applies to provider: 'password' accounts (admins) — Google
+ * accounts have no password to reset.
+ */
+export const forgotPassword = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+  const user = await User.findOne({ email: email.toLowerCase(), provider: 'password' });
+
+  if (user) {
+    const rawToken = crypto.randomBytes(32).toString('hex');
+    const expiresAt = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
+
+    // Any previous unused reset link for this account is invalidated
+    // by a new request — only the most recent link should work.
+    await PasswordResetToken.deleteMany({ user: user._id });
+    await PasswordResetToken.create({ user: user._id, tokenHash: hashToken(rawToken), expiresAt });
+
+    const resetLink = `${process.env.CLIENT_URL}/admin/reset-password?token=${rawToken}`;
+    try {
+      await sendPasswordResetEmail(user.email, resetLink);
+    } catch (err) {
+      // Swallow — the response stays generic either way, and a delivery
+      // failure here shouldn't reveal whether the account exists.
+      console.error('[auth] failed to send password reset email:', err.message);
+    }
+  }
+
+  new ApiResponse(200, null, FORGOT_PASSWORD_MESSAGE).send(res);
+});
+
+/**
+ * POST /api/auth/reset-password
+ * Also revokes every existing session for the account — if the reset
+ * was triggered because the password leaked, any session an attacker
+ * already had gets killed too, not just future logins.
+ */
+export const resetPassword = asyncHandler(async (req, res) => {
+  const { token, password } = req.body;
+
+  const stored = await PasswordResetToken.findOne({ tokenHash: hashToken(token) });
+  if (!stored || stored.expiresAt < new Date()) {
+    throw ApiError.badRequest('This reset link is invalid or has expired');
+  }
+
+  const user = await User.findById(stored.user);
+  if (!user) {
+    await stored.deleteOne();
+    throw ApiError.badRequest('This reset link is invalid or has expired');
+  }
+
+  user.password = password; // pre-save hook re-hashes
+  await user.save();
+
+  await PasswordResetToken.deleteMany({ user: user._id });
+  await revokeAllSessionsForUser(user._id);
+
+  new ApiResponse(200, null, 'Password updated — you can now sign in').send(res);
 });

@@ -35,7 +35,7 @@ function OrderDetail() {
   }
 
   return (
-    <main className="mx-auto w-[min(700px,calc(100%-24px))] py-12 sm:w-[min(700px,calc(100%-40px))]">
+    <main className="mx-auto w-[min(700px,calc(100%-40px))] py-12">
       {order.paymentStatus === 'paid' && (
         <div className="mb-6 rounded-2xl bg-[#6F9E23]/10 p-5 text-sm text-[#6F9E23]">
           Payment confirmed — thanks for your order!
@@ -43,7 +43,7 @@ function OrderDetail() {
       )}
 
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-xl font-semibold tracking-[-.03em] sm:text-2xl">Order {order._id}</h1>
+        <h1 className="text-2xl font-semibold tracking-[-.03em]">Order {order._id}</h1>
         <span className="rounded-full bg-[#eeeee9] px-3 py-1 font-mono text-[10px] uppercase tracking-widest">
           {order.orderStatus}
         </span>

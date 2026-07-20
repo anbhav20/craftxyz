@@ -10,6 +10,8 @@ import MyOrders from './pages/MyOrders.jsx';
 import OrderDetail from './pages/OrderDetail.jsx';
 import RequireCustomerAuth from './components/RequireCustomerAuth.jsx';
 import AdminLogin from './admin/pages/AdminLogin.jsx';
+import AdminForgotPassword from './admin/pages/AdminForgotPassword.jsx';
+import AdminResetPassword from './admin/pages/AdminResetPassword.jsx';
 import AdminLayout from './admin/components/AdminLayout.jsx';
 import RequireAdmin from './admin/components/RequireAdmin.jsx';
 import AdminDashboard from './admin/pages/AdminDashboard.jsx';
@@ -57,6 +59,8 @@ function App() {
         </Route>
 
         <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin/forgot-password" element={<AdminForgotPassword />} />
+        <Route path="/admin/reset-password" element={<AdminResetPassword />} />
         <Route
           path="/admin"
           element={

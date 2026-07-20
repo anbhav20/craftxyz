@@ -116,7 +116,7 @@ function CheckoutPage() {
   }
 
   return (
-    <main className="mx-auto w-[min(900px,calc(100%-24px))] py-12 sm:w-[min(900px,calc(100%-40px))]">
+    <main className="mx-auto w-[min(900px,calc(100%-40px))] py-12">
       <h1 className="text-3xl font-semibold tracking-[-.04em]">Checkout</h1>
 
       <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_360px]">

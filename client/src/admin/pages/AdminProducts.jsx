@@ -173,7 +173,7 @@ function AdminProducts() {
                 required
               />
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
                 <label className="block text-xs font-semibold text-[#141311]/70">Price</label>
                 <input

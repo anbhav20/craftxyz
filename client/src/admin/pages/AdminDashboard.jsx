@@ -5,7 +5,7 @@ import { fetchDashboard, selectDashboard } from '../../features/admin/dashboardS
 
 const STAT_CARDS = [
   { key: 'totalOrders', label: 'Total orders' },
-  { key: 'totalRevenue', label: 'Revenue', prefix: '$' },
+  { key: 'totalRevenue', label: 'Revenue', prefix: '₹' },
   { key: 'totalProducts', label: 'Products' },
   { key: 'totalCustomers', label: 'Customers' },
 ];

@@ -12,9 +12,16 @@ export const authApi = {
 
   // Marked so the response interceptor never tries to "refresh and
   // retry" a refresh call itself — that would recurse forever.
-  refresh: () => apiClient.post('/auth/refresh', null, { _isRefreshCall: true }).then(unwrap),
+  // _silent: a failed refresh here just means "not signed in yet" —
+  // completely normal for every first-time visitor, so it shouldn't
+  // surface as an error toast the way a real API failure would.
+  refresh: () => apiClient.post('/auth/refresh', null, { _isRefreshCall: true, _silent: true }).then(unwrap),
 
   logout: () => apiClient.post('/auth/logout').then(unwrap),
 
   me: () => apiClient.get('/auth/me').then(unwrap),
+
+  forgotPassword: (email) => apiClient.post('/auth/forgot-password', { email }).then(unwrap),
+  resetPassword: (token, password) =>
+    apiClient.post('/auth/reset-password', { token, password }).then(unwrap),
 };

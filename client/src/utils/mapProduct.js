@@ -1,7 +1,5 @@
 import { getCategoryTheme } from './categoryTheme.js';
 
-const PLACEHOLDER_IMAGE = '/placeholder-product.png';
-
 /**
  * ProductCard/ProductDetails expect { id, image, material, badge,
  * colors } — fields the backend Product model doesn't have (it has
@@ -29,7 +27,10 @@ export function mapProduct(product) {
     // No `material` field on the backend yet — placeholder until an
     // admin-settable one is added (e.g. "PLA+", "PETG", "Resin").
     material: product.material || 'PLA+',
-    image: product.images?.[0]?.url || PLACEHOLDER_IMAGE,
+    // null (not a broken path) when there's no uploaded image yet —
+    // ProductCard renders a proper placeholder box instead of an <img>
+    // with a dead src.
+    image: product.images?.[0]?.url || null,
     badge: product.featured ? 'Featured' : undefined,
     colors: getCategoryTheme(categorySlug).colors,
   };

@@ -71,7 +71,7 @@ function AdminSettings() {
           />
         </div>
         <div>
-          <label className="block text-xs font-semibold text-[#141311]/70">Shipping charge ($)</label>
+          <label className="block text-xs font-semibold text-[#141311]/70">Shipping charge (₹)</label>
           <input
             className="mt-1 w-full rounded-lg border border-[#141311]/15 px-3 py-2 text-sm focus:border-[#6F9E23] focus:outline-none"
             type="number"
@@ -83,7 +83,7 @@ function AdminSettings() {
         </div>
         <div>
           <label className="block text-xs font-semibold text-[#141311]/70">
-            Free shipping above ($) — leave blank to never offer free shipping
+            Free shipping above (₹) — leave blank to never offer free shipping
           </label>
           <input
             className="mt-1 w-full rounded-lg border border-[#141311]/15 px-3 py-2 text-sm focus:border-[#6F9E23] focus:outline-none"

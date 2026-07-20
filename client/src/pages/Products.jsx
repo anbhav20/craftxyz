@@ -31,10 +31,10 @@ function Products() {
   return (
     <main className="bg-white">
       <section className="border-b border-[#deded8] bg-[#eeeee9] py-16 sm:py-22">
-        <div className="mx-auto w-[min(1320px,calc(100%-24px))] sm:w-[min(1320px,calc(100%-40px))]">
+        <div className="mx-auto w-[min(1320px,calc(100%-40px))]">
           <p className="text-[10px] font-bold uppercase tracking-[.18em] text-[#6f9e23]">The CraftXYZ edit</p>
           <div className="mt-4 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
-            <h1 className="max-w-3xl text-4xl font-semibold leading-[.9] tracking-[-.075em] sm:text-5xl md:text-7xl">
+            <h1 className="max-w-3xl text-5xl font-semibold leading-[.9] tracking-[-.075em] sm:text-7xl">
               The good stuff, <span className="text-[#78a928]">made better.</span>
             </h1>
             <p className="max-w-xs text-sm leading-6 text-[#6b6b63]">
@@ -43,7 +43,7 @@ function Products() {
           </div>
         </div>
       </section>
-      <section className="mx-auto w-[min(1320px,calc(100%-24px))] py-12 sm:w-[min(1320px,calc(100%-40px))] sm:py-16">
+      <section className="mx-auto w-[min(1320px,calc(100%-40px))] py-12 sm:py-16">
         <div className="flex flex-col justify-between gap-5 border-b border-[#deded8] pb-5 sm:flex-row sm:items-center">
           <div className="flex flex-wrap gap-2">
             {['All', ...categories.map((item) => item.name)].map((item) => (

@@ -1,7 +1,14 @@
 import { useState } from 'react';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks.js';
-import { signInAsAdmin, selectIsAdmin, selectAuthStatus } from '../../features/auth/authSlice.js';
+import {
+  signInAsAdmin,
+  signInWithGoogle,
+  signOut,
+  selectIsAdmin,
+  selectAuthStatus,
+} from '../../features/auth/authSlice.js';
+import { addToast } from '../../features/ui/uiSlice.js';
 
 function AdminLogin() {
   const dispatch = useAppDispatch();
@@ -11,16 +18,36 @@ function AdminLogin() {
   const status = useAppSelector(selectAuthStatus);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [googleLoading, setGoogleLoading] = useState(false);
 
   if (isAdmin) {
     return <Navigate to={location.state?.from?.pathname || '/admin'} replace />;
   }
 
+  const goToAdmin = () => navigate(location.state?.from?.pathname || '/admin', { replace: true });
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const result = await dispatch(signInAsAdmin({ email, password }));
-    if (result.meta.requestStatus === 'fulfilled') {
-      navigate(location.state?.from?.pathname || '/admin', { replace: true });
+    if (result.meta.requestStatus === 'fulfilled') goToAdmin();
+  };
+
+  const handleGoogleSignIn = async () => {
+    setGoogleLoading(true);
+    const result = await dispatch(signInWithGoogle());
+    setGoogleLoading(false);
+
+    if (signInWithGoogle.fulfilled.match(result)) {
+      if (result.payload.user.role !== 'admin') {
+        // This Google account is real and signed in successfully, but
+        // it's a customer account — sign it back out immediately
+        // rather than leaving them "logged in" while stuck on the
+        // admin login screen.
+        dispatch(signOut());
+        dispatch(addToast({ message: 'That Google account is not an admin.' }));
+        return;
+      }
+      goToAdmin();
     }
   };
 
@@ -41,7 +68,12 @@ function AdminLogin() {
           required
         />
 
-        <label className="mt-4 block text-xs font-semibold text-[#141311]/70">Password</label>
+        <div className="mt-4 flex items-center justify-between">
+          <label className="block text-xs font-semibold text-[#141311]/70">Password</label>
+          <Link className="text-xs font-semibold text-[#6F9E23] hover:underline" to="/admin/forgot-password">
+            Forgot password?
+          </Link>
+        </div>
         <input
           className="mt-1 w-full rounded-lg border border-[#141311]/15 px-3 py-2 text-sm focus:border-[#6F9E23] focus:outline-none"
           type="password"
@@ -57,6 +89,24 @@ function AdminLogin() {
         >
           {status === 'loading' ? 'Signing in…' : 'Sign in'}
         </button>
+
+        <div className="my-5 flex items-center gap-3">
+          <div className="h-px flex-1 bg-[#141311]/10" />
+          <span className="text-xs text-[#141311]/40">or</span>
+          <div className="h-px flex-1 bg-[#141311]/10" />
+        </div>
+
+        <button
+          className="w-full rounded-full border border-[#141311]/15 px-4 py-3 text-sm font-bold text-[#141311] transition-colors hover:border-[#141311] disabled:opacity-50"
+          onClick={handleGoogleSignIn}
+          type="button"
+          disabled={googleLoading}
+        >
+          {googleLoading ? 'Signing in…' : 'Sign in with Google'}
+        </button>
+        <p className="mt-3 text-center text-[11px] text-[#141311]/40">
+          Only works if this Google account's email already has an admin account.
+        </p>
       </form>
     </div>
   );
